@@ -1,0 +1,88 @@
+<DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>Form Page</title>
+        <link href="https://fonts.googleapis.com/css2?family=Aldrich&display=swap" rel="stylesheet">
+        </head>
+        <style>
+            body 
+            {
+              background-color: aliceblue;
+              font-family: "Aldrich", sans-serif;
+              font-weight: 400;
+            }
+
+            h1{
+                color: black;
+                border: 2px solid black;
+                text-align: center;
+            }
+
+            h2{
+                color: black;
+            }
+            p{
+                color: rgb(23, 5, 82);
+            }
+            textarea{
+                color: gray;
+                border: 4;
+            }
+            </style>
+    <body>
+         <h3>Student Name: Rucha Vikram Kulkarni</h3>
+    <h3> Roll no. : 52</h3> <h3> Assignment name and no. : 9.Form</h3>
+        <h1> Student Registration </h1>
+        <h2> Please enter your information to apply for CSI and we'll email you back.</h2>
+        <form method="get">
+            <p>Please Note: First name,Last Name and Email are required </p>
+            <label for="Fname">First Name :</label>
+            <input type="text" name="Fname" placeholder="Enter first name">
+            <label for="Lname">Last Name : </label>
+            <input type="text" name="Lname" placeholder="Enter last name">
+            <br>
+            <br>
+            <label for="email">Email : </label>
+            <input type="email"name="Email" placeholder="name@gmail.com">
+            <br>  
+
+            <p> New Registration </p>
+            <label for="new">Yes</label>
+            <input type="radio" name="new" value="YES">
+            <label for="new">NO</label>
+            <input type ="radio" name="new" value ="NO">
+            <br>
+
+            <p> Gender</p>
+            <label for = "male">Male</label>
+            <input type="radio" name="gender" value="male">
+            <label for = "female">Female</label>
+            <input type="radio" name="gender" value="female">
+            <label for = "other">Other</label>
+            <input type="radio" name="gender" value="other">
+
+            <p> Select stream </p>
+            <select name ="subject">
+                <option value="subject">CSE</option>
+                <option value="subject">CSE-AIML</option>
+                <option value="subject">CSE-DS</option>
+                <option value="subject">CSE-AIML-DS</option>
+            </select>
+
+             <p> Select team </p>
+            <select name ="Teams">
+                <option value="team">Technical</option>
+                <option value="team">Public Relations</option>
+                <option value="team">Management</option>
+                <option value="team">Media</option>
+                <option value="team">Filmography</option>
+            </select>
+            <br>
+            <br>
+
+            <label>Why you want to join CSI</label><br><br>
+            <textarea rows ="4" placeholder="Write your answer here.... "required></textarea>
+            <br>
+            <br>
+            <input type="submit" name="" value="Submit Feedback">
