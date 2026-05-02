@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="style.xsl"?>
+<students>
+    <student>
+        <name>Atharv Kathe</name>
+        <roll>101</roll>
+        <marks>92</marks>
+    </student>
+    <student>
+        <name>John Smith</name>
+        <roll>102</roll>
+        <marks>45</marks>
+    </student>
+    <student>
+        <name>Jane Doe</name>
+        <roll>103</roll>
+        <marks>78</marks>
+    </student>
+    <student>
+        <name>Bob Wilson</name>
+        <roll>104</roll>
+        <marks>32</marks>
+    </student>
+</students>
