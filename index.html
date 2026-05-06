@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Swarup's Web Dev Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0b0c0e;
+      --surface: #141518;
+      --border: #252629;
+      --accent: #f0e040;
+      --accent2: #40e0f0;
+      --text: #e8e8e8;
+      --muted: #666;
+      --card-bg: #16181c;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Grid noise bg */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(240,224,64,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240,224,64,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 60px 0 20px;
+    }
+
+    .eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      letter-spacing: 3px;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -1px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.1s ease forwards;
+    }
+
+    h1 span {
+      color: var(--accent);
+      display: inline-block;
+    }
+
+    .subtitle {
+      margin-top: 16px;
+      color: var(--muted);
+      font-size: 1rem;
+      font-weight: 400;
+      max-width: 480px;
+      line-height: 1.6;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.2s ease forwards;
+    }
+
+    .repo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 24px;
+      font-family: 'Space Mono', monospace;
+      font-size: 12px;
+      color: var(--accent2);
+      text-decoration: none;
+      border: 1px solid var(--accent2);
+      padding: 8px 16px;
+      border-radius: 4px;
+      opacity: 0;
+      animation: fadeUp 0.6s 0.3s ease forwards;
+      transition: background 0.2s, color 0.2s;
+    }
+    .repo-link:hover { background: var(--accent2); color: #000; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+      margin: 40px 0;
+      opacity: 0;
+      animation: fadeIn 0.8s 0.4s ease forwards;
+    }
+
+    /* ── SECTION LABEL ── */
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    /* ── GRID ── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2px;
+      margin-bottom: 80px;
+    }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      padding: 28px;
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.5s ease forwards;
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .card:nth-child(1)  { animation-delay: 0.5s; }
+    .card:nth-child(2)  { animation-delay: 0.6s; }
+    .card:nth-child(3)  { animation-delay: 0.7s; }
+    .card:nth-child(4)  { animation-delay: 0.8s; }
+    .card:nth-child(5)  { animation-delay: 0.9s; }
+    .card:nth-child(6)  { animation-delay: 1.0s; }
+    .card:nth-child(7)  { animation-delay: 1.1s; }
+    .card:nth-child(8)  { animation-delay: 1.2s; }
+    .card:nth-child(9)  { animation-delay: 1.3s; }
+    .card:nth-child(10) { animation-delay: 1.4s; }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      background: #1a1c20;
+    }
+    .card:hover::before { transform: scaleX(1); }
+
+    .card-num {
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--accent);
+      opacity: 0.6;
+    }
+
+    .card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      letter-spacing: -0.3px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.5;
+      flex: 1;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 2px;
+      background: rgba(240,224,64,0.08);
+      color: var(--accent);
+      border: 1px solid rgba(240,224,64,0.2);
+      align-self: flex-start;
+    }
+
+    .card-arrow {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 18px;
+      color: var(--accent);
+      opacity: 0;
+      transform: translate(-4px, 4px);
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .card:hover .card-arrow { opacity: 1; transform: translate(0, 0); }
+
+    /* ── FOLDER CARD ── */
+    .card.folder {
+      border-style: dashed;
+      border-color: #2a2d35;
+    }
+    .card.folder .card-tag {
+      background: rgba(64,224,240,0.08);
+      color: var(--accent2);
+      border-color: rgba(64,224,240,0.2);
+    }
+    .card.folder:hover { border-color: var(--accent2); border-style: solid; }
+    .card.folder::before { background: var(--accent2); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px 0;
+      text-align: center;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      header { padding: 40px 0 16px; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <p class="eyebrow">// Web Development Portfolio</p>
+    <h1>Swarup's <span>Projects</span></h1>
+    <p class="subtitle">A collection of HTML/CSS web development assignments and practicals — hosted on GitHub Pages.</p>
+    <a class="repo-link" href="https://github.com/swarup-bit9499/web-development" target="_blank">
+      <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+      github.com/swarup-bit9499/web-development
+    </a>
+  </header>
+
+  <div class="divider"></div>
+
+  <p class="section-label">// All Projects &amp; Assignments</p>
+
+  <div class="grid">
+
+    <!-- Root HTML files -->
+    <a class="card" href="Assignment2_static_webpage.html">
+      <span class="card-num">01</span>
+      <span class="card-title">Assignment 2 — Static Webpage</span>
+      <span class="card-desc">A foundational static webpage demonstrating basic HTML structure, tags, and content layout.</span>
+      <span class="card-tag">HTML</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card" href="Assignment3_text_formatting.html">
+      <span class="card-num">02</span>
+      <span class="card-title">Assignment 3 — Text Formatting</span>
+      <span class="card-desc">Exploring HTML text formatting elements: headings, bold, italic, underline, and more.</span>
+      <span class="card-tag">HTML</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card" href="Assignment4_lists_tags.html">
+      <span class="card-num">03</span>
+      <span class="card-title">Assignment 4 — Lists &amp; Tags</span>
+      <span class="card-desc">Practice with ordered, unordered, and nested lists along with various HTML tags.</span>
+      <span class="card-tag">HTML</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card" href="Assignment5_IMGTags.html">
+      <span class="card-num">04</span>
+      <span class="card-title">Assignment 5 — Image Tags</span>
+      <span class="card-desc">Working with HTML image elements, attributes like src, alt, width, and height.</span>
+      <span class="card-tag">HTML</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card" href="6thpractical.html">
+      <span class="card-num">05</span>
+      <span class="card-title">6th Practical</span>
+      <span class="card-desc">Practical exercise covering additional HTML concepts and page structure techniques.</span>
+      <span class="card-tag">HTML</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card" href="7thpractical.html">
+      <span class="card-num">06</span>
+      <span class="card-title">7th Practical</span>
+      <span class="card-desc">Continued practical work exploring more intermediate HTML elements and layouts.</span>
+      <span class="card-tag">HTML</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card" href="assignment8.html">
+      <span class="card-num">07</span>
+      <span class="card-title">Assignment 8</span>
+      <span class="card-desc">HTML assignment covering tables, forms, or other structured content techniques.</span>
+      <span class="card-tag">HTML</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card" href="assignment9.html">
+      <span class="card-num">08</span>
+      <span class="card-title">Assignment 9</span>
+      <span class="card-desc">Further exploration of HTML and web page design concepts and implementations.</span>
+      <span class="card-tag">HTML</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card" href="assignment11.html">
+      <span class="card-num">09</span>
+      <span class="card-title">Assignment 11</span>
+      <span class="card-desc">An HTML assignment building on previous knowledge with more advanced techniques.</span>
+      <span class="card-tag">HTML</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <!-- Folders -->
+    <a class="card folder" href="assignment-10/">
+      <span class="card-num">10</span>
+      <span class="card-title">Assignment 10 — Folder</span>
+      <span class="card-desc">A multi-file project directory. Contains HTML, CSS, or other assets for a more structured assignment.</span>
+      <span class="card-tag">Folder / Multi-file</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card folder" href="assignment-12/">
+      <span class="card-num">11</span>
+      <span class="card-title">Assignment 12 — Folder</span>
+      <span class="card-desc">A multi-file project directory with expanded web development concepts and files.</span>
+      <span class="card-tag">Folder / Multi-file</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+    <a class="card folder" href="assignment-13/">
+      <span class="card-num">12</span>
+      <span class="card-title">Assignment 13 — Folder</span>
+      <span class="card-desc">Final folder-based project exploring advanced HTML/CSS or JavaScript features.</span>
+      <span class="card-tag">Folder / Multi-file</span>
+      <span class="card-arrow">↗</span>
+    </a>
+
+  </div>
+
+</div>
+
+<footer>
+  <div class="container">
+    Built by <a href="https://github.com/swarup-bit9499" target="_blank">swarup-bit9499</a> &nbsp;·&nbsp;
+    Hosted on <a href="https://pages.github.com" target="_blank">GitHub Pages</a>
+  </div>
+</footer>
+
+</body>
+</html>
